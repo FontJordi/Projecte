@@ -27,9 +27,10 @@ def goForth(path, foldername):
 
 def readTxt(dir, name):
 
+    print(f"Opening file {dir}/{name}")
+
     with open(f"{dir}/{name}") as f:
         lines = f.readlines()
-        #return lines
     return lines
 
 def writeResponse(dir, name, listtwit):
@@ -40,7 +41,11 @@ def writeResponse(dir, name, listtwit):
         f.write(json_str)
 
 
+def getPath():
+    return os.getcwd()
 
 
 
-readTxt(goForth(goBack(0),"myfolder"), "tokens.txt")[0:3]
+
+
+#readTxt(goForth(goBack(0),"myfolder"), "tokens.txt")[0:3]

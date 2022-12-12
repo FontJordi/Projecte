@@ -4,11 +4,12 @@ import filemanage as fm
 import json
 from kafka import KafkaProducer
 
+os.chdir("/home/kiwichi/Documents/Projecte/myfolder")
 
 def json_serializer(data):
     return json.dumps(data).encode("utf-8")
 
-bearer_token ="AAAAAAAAAAAAAAAAAAAAAG8AkQEAAAAAD96bfZgqqvgPCQezwl0bFyMMmx4%3DiHjphY15LG10yQNNk143yoWxEAg5vpgDbTISVYOPnJM0rgHJ3g"
+bearer_token = fm.readTxt(fm.getPath(), "bearertoken.txt")[0]
 producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=json_serializer)
 
 class MyStream(tweepy.StreamingClient):
@@ -71,8 +72,6 @@ if __name__ == "__main__":
 
 
 """
-#client = tweepy.Client(bearer_token = "AAAAAAAAAAAAAAAAAAAAAG8AkQEAAAAAD96bfZgqqvgPCQezwl0bFyMMmx4%3DiHjphY15LG10yQNNk143yoWxEAg5vpgDbTISVYOPnJM0rgHJ3g")
-
 #query = 'from:kiwichi__ -is:retweet'
 #query = 'from:kiwichi__ '
 
