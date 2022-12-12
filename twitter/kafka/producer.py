@@ -18,7 +18,7 @@ producer = KafkaProducer(bootstrap_servers=['localhost:9092'], \
 producer.send("TutorialTopic", json.dumps({"Id": 78912}))
 if __name__ == "__main__":
 
-    while 1 ==1 : ## haig de posar aixo perque envii missatge?
+    while 1 == 1 : ## haig de posar aixo perque envii missatge?
 
         my_stream = MyStream
         producer.send("TutorialTopic", my_stream.filter(tweet_fields = ["referenced_tweets"]))
