@@ -1,0 +1,12 @@
+Vx7yZmXIG1CDOoC1HLAS5i08l
+UOGshwF1ap4dWEXM6qygLAW94WgnvWx1xTWWU9OBBS9cW5g5n0
+AAAAAAAAAAAAAAAAAAAAAG8AkQEAAAAAD96bfZgqqvgPCQezwl0bFyMMmx4%3DiHjphY15LG10yQNNk143yoWxEAg5vpgDbTISVYOPnJM0rgHJ3g
+
+API Key,
+API Key Secret
+Bearer Token
+
+twitter rules
+
+bio_location:
+place:
