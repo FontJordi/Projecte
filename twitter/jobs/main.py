@@ -1,5 +1,3 @@
-##bon dia
-
 import pyspark
 import pyspark.sql
 from typing import Callable
@@ -29,21 +27,25 @@ if __name__ == "__main__":
     .readStream \
     .format("kafka") \
     .option("kafka.bootstrap.servers", "localhost:9092") \
-    .option("subscribe", "TutorialTopic") \
+    .option("subscribe", "Twitter") \
     .load()
 
     df2 = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
     
-    df2.writeStream \
+    writer = df2.writeStream \
         .format("csv") \
-        .trigger(processingTime="60 seconds") \
-        .outputMode("append") \
+        .option("path", "/home/kiwichi/Documents/Projecte/data") \
         .option("checkpointLocation", "checkpoint") \
-        .option("path", "output_path/") \
-        .start() \
-        .awaitTermination(timeout=70)
-
+        .outputMode("append") \
+        .trigger(processingTime="50 seconds") \
+        .start()
+    writer.awaitTermination()            
+        #.option("checkpointLocation", "checkpoint") \
+        #.option("path", "output_path/") \
+        #.start() \
+        #.awaitTermination(timeout=70)
+        #.trigger(processingTime="60 seconds") \
 ##s'ha d'afegir una opcio de que si ja existeix un single csv file, appendd
 
-allfiles =  spark.read.option("header","false").csv("/home/kiwichi/Documents/Projecte/output_path/part-*.csv")    
-allfiles.coalesce(1).write.format("csv").option("header", "false").save("/home/kiwichi/Documents/Projecte/data/single_csv_file3/")
+#allfiles =  spark.read.option("header","false").csv("/home/kiwichi/Documents/Projecte/output_path/part-*.csv")    
+#allfiles.coalesce(1).write.format("csv").option("header", "false").save("/home/kiwichi/Documents/Projecte/data/single_csv_file4/")

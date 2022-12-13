@@ -3,27 +3,35 @@ import json
 import sys
 import time
 
-sys.path.append('/home/kiwichi/Documents/Projecte/twitter/classes')
+ #his works so long as the importing script is run from its containing directory. 
+ #Otherwise the parent directory of whatever other directory the script is run from will be appended to the path and the import will fail
 
-from import_twitter import MyStream
+sys.path.insert(1, '/home/kiwichi/Documents/Projecte/twitter')
 
-topic_name = "Messi"
+from classes import import_twitter
+from classes import filemanage as fm
+
+topic_name = ["Messi", "Argentina"]
 
 def json_serializer(data):
     return json.dumps(data).encode("utf-8")
 
+bearer_token = fm.readTxt(fm.getPath(), "bearertoken.txt")[0]
+
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'], \
     value_serializer=json_serializer)
 
-producer.send("TutorialTopic", json.dumps({"Id": 78912}))
 if __name__ == "__main__":
 
     while 1 == 1 : ## haig de posar aixo perque envii missatge?
 
-        my_stream = MyStream
-        producer.send("TutorialTopic", my_stream.filter(tweet_fields = ["referenced_tweets"]))
-        producer.send("TutorialTopic", "hi")
-        producer.flush()
-        print(my_stream)
-        time.sleep(0.5)
+        my_stream = import_twitter.MyStream(bearer_token=bearer_token)
+        my_stream.start_streaming_tweets(topic_name)
 
+        ## Python stays here, if I wanted to add more sources of streaming data to kafka, I'd use this
+        ## .py file and add threading, so I have all kafka producer.send centralized here.
+
+        print("aaaa")
+        print(my_stream.current_value)
+        producer.send("Twitter", my_stream.current_value)
+        producer.flush()
