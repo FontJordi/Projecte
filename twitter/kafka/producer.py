@@ -1,13 +1,6 @@
 from kafka import KafkaProducer
 import json
-import sys
 import time
-
- #his works so long as the importing script is run from its containing directory. 
- #Otherwise the parent directory of whatever other directory the script is run from will be appended to the path and the import will fail
-
-sys.path.insert(1, '/home/kiwichi/Documents/Projecte/twitter')
-
 from classes import import_twitter
 from classes import filemanage as fm
 

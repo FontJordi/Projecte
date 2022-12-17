@@ -39,7 +39,8 @@ if __name__ == "__main__":
         .outputMode("append") \
         .trigger(processingTime="50 seconds") \
         .start()
-    writer.awaitTermination()            
+    writer.awaitTermination()  
+              
         #.option("checkpointLocation", "checkpoint") \
         #.option("path", "output_path/") \
         #.start() \

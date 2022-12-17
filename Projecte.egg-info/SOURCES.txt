@@ -1,0 +1,12 @@
+README.md
+setup.py
+Projecte.egg-info/PKG-INFO
+Projecte.egg-info/SOURCES.txt
+Projecte.egg-info/dependency_links.txt
+Projecte.egg-info/top_level.txt
+twitter/__init__.py
+twitter/classes/__init__.py
+twitter/classes/filemanage.py
+twitter/classes/import_twitter.py
+twitter/jobs/__init__.py
+twitter/jobs/main.py
