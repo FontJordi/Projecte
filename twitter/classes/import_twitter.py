@@ -10,9 +10,9 @@ def json_serializer(data):
     return json.dumps(data).encode("utf-8")
 
 bearer_token = fm.readTxt(fm.getPath(), "bearertoken.txt")[0]
-#producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=json_serializer)
+producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=json_serializer)
 
-print(sys.path)
+#producer = KafkaProducer(bootstrap_servers='localhost:9092')
 
 class MyStream(tweepy.StreamingClient):
     
@@ -36,10 +36,13 @@ class MyStream(tweepy.StreamingClient):
 
         if tweet.referenced_tweets == None:
 
-            #producer.send("Twitter", value=tweet.text)
+            print(self.get_rules())
+            producer.send("Twitter", value=tweet.text)
             print(tweet.text)
 
-            time.sleep(10)
+            self.current_value = tweet.text
+
+            time.sleep(1)
 
     def start_streaming_tweets(self, search_term):
 
@@ -57,7 +60,7 @@ class MyStream(tweepy.StreamingClient):
         print("disconnected")
         return
 
-terms = ["Messi", "Argentina"]
+terms = ["Messi --lang:es"]
 
 if __name__ == "__main__":
 

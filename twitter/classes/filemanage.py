@@ -44,6 +44,12 @@ def writeResponse(dir, name, listtwit):
 def getPath():
     return os.getcwd()
 
+import glob
+
+def csvListFiles(dir):
+ 
+     return glob.glob(dir + "/*.csv")
+
 
 
 

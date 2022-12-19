@@ -36,8 +36,9 @@ if __name__ == "__main__":
         .format("csv") \
         .option("path", "/home/kiwichi/Documents/Projecte/data") \
         .option("checkpointLocation", "checkpoint") \
+        .option("encoding", "UTF-8") \
         .outputMode("append") \
-        .trigger(processingTime="50 seconds") \
+        .trigger(processingTime="300 seconds") \
         .start()
     writer.awaitTermination()  
               

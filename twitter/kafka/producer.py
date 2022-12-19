@@ -4,7 +4,7 @@ import time
 from classes import import_twitter
 from classes import filemanage as fm
 
-topic_name = ["Messi", "Argentina"]
+topic_name = ["Messi --lang:es"]
 
 def json_serializer(data):
     return json.dumps(data).encode("utf-8")
@@ -25,6 +25,5 @@ if __name__ == "__main__":
         ## .py file and add threading, so I have all kafka producer.send centralized here.
 
         print("aaaa")
-        print(my_stream.current_value)
         producer.send("Twitter", my_stream.current_value)
-        producer.flush()
+        #producer.flush()
